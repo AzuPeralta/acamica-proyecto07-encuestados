@@ -36,6 +36,12 @@ Modelo.prototype = {
 
   //se guardan las preguntas
   guardar: function(){
+    //Las preguntas se guardan, si refrescas la pagina y te fijas estan almacenadas en el local storage. Lo que falta es mostrarlo nuevamente en la pagina!
+    let preguntasParaGuardar = JSON.stringify(this.preguntas);
+    localStorage.setItem('preguntas', preguntasParaGuardar);
+
+    let preguntasGuardadas = localStorage.getItem('preguntas');
+    JSON.parse(preguntasGuardadas);
   },
 
   borrarPregunta: function(id){
