@@ -1,7 +1,7 @@
 /*
  * Modelo
  */
-var Modelo = function() {
+const Modelo = function() {
   this.preguntas = JSON.parse(localStorage.getItem('preguntas')) || [];
   // this.preguntas = [];
   this.ultimoId = 0;
@@ -27,9 +27,9 @@ Modelo.prototype = {
   },
   //se agrega una pregunta dado un nombre y sus respuestas
   agregarPregunta: function(nombre, respuestas) {
-    var id = this.obtenerUltimoId();
+    let id = this.obtenerUltimoId();
     id++;
-    var nuevaPregunta = {'textoPregunta': nombre, 'id': id, 'cantidadPorRespuesta': respuestas};
+    let nuevaPregunta = {'textoPregunta': nombre, 'id': id, 'cantidadPorRespuesta': respuestas};
     this.preguntas.push(nuevaPregunta);
     this.guardar();
     this.preguntaAgregadaEvent.notificar();

@@ -1,7 +1,7 @@
 /*
  * Controlador
  */
-var Controlador = function(modelo) {
+const Controlador = function(modelo) {
   this.modelo = modelo;
 };
 
