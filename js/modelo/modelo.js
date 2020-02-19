@@ -2,15 +2,16 @@
  * Modelo
  */
 var Modelo = function() {
-  this.preguntas = [];
+  this.preguntas = JSON.parse(localStorage.getItem('preguntas')) || [];
+  // this.preguntas = [];
   this.ultimoId = 0;
 
   //inicializacion de eventos
-  this.preguntaAgregada = new Evento(this);
-  this.preguntaEliminada = new Evento(this);
-  this.preguntaEditada = new Evento(this);
-  this.borrarTodo = new Evento(this);
-
+  this.preguntaAgregadaEvent = new Evento(this);
+  this.preguntaEliminadaEvent = new Evento(this);
+  this.preguntaEditadaEvent = new Evento(this);
+  this.eliminarTodoEvent = new Evento(this);
+  this.guardarEvent = new Evento(this);
 };
 
 Modelo.prototype = {
@@ -31,31 +32,37 @@ Modelo.prototype = {
     var nuevaPregunta = {'textoPregunta': nombre, 'id': id, 'cantidadPorRespuesta': respuestas};
     this.preguntas.push(nuevaPregunta);
     this.guardar();
-    this.preguntaAgregada.notificar();
+    this.preguntaAgregadaEvent.notificar();
   },
 
   //se guardan las preguntas
   guardar: function(){
-    //Las preguntas se guardan, si refrescas la pagina y te fijas estan almacenadas en el local storage. Lo que falta es mostrarlo nuevamente en la pagina!
     let preguntasParaGuardar = JSON.stringify(this.preguntas);
     localStorage.setItem('preguntas', preguntasParaGuardar);
-
-    let preguntasGuardadas = localStorage.getItem('preguntas');
-    JSON.parse(preguntasGuardadas);
   },
 
   borrarPregunta: function(id){
     this.preguntas.splice(id, 1);
     this.guardar();
-    this.preguntaEliminada.notificar();
+    this.preguntaEliminadaEvent.notificar();
 },
  editarPregunta: function(){
 
 },
-  borrarTodo: function(){
-    console.log('el circuito funciona');
-    this.preguntas.splice(0);
+  eliminarTodo: function(){
+    this.preguntas = [];
+    this.eliminarTodoEvent.notificar();
     this.guardar();
-    borrarTodo.notificar();
   },
+  // getPreguntas: function(){
+  //   if(this.preguntas = []){
+  //     console.log('habia preguntas');
+  //     this.preguntas = JSON.parse(localStorage.getItem('preguntas'));
+  //   }
+  //   else{
+  //     console.log('estaba vacio');
+  //     // this.preguntas = [];
+  //   }
+  //   return this.preguntas;
+  // }
 }

@@ -8,9 +8,9 @@ var VistaAdministrador = function(modelo, controlador, elementos) {
   var contexto = this;
 
   // suscripción de observadores
-  this.modelo.preguntaAgregada.suscribir(() => contexto.reconstruirLista());
-  this.modelo.preguntaEliminada.suscribir(()=> contexto.reconstruirLista());
-  this.modelo.borrarTodo.suscribir(() => contexto.reconstruirLista());
+  this.modelo.preguntaAgregadaEvent.suscribir(() => contexto.reconstruirLista());
+  this.modelo.preguntaEliminadaEvent.suscribir(()=> contexto.reconstruirLista());
+  this.modelo.eliminarTodoEvent.suscribir(() => contexto.reconstruirLista());
 };
 
 
@@ -42,7 +42,9 @@ VistaAdministrador.prototype = {
   reconstruirLista: function() {
     var lista = this.elementos.lista;
     lista.html('');
-    var preguntas = this.modelo.preguntas;
+    // var preguntas = this.modelo.getPreguntas();
+    let preguntas = this.modelo.preguntas;
+    //var preguntas = this.modelo.getPreguntas(); en esta funcion que esta dentro del modelo tiene que estar la condicional de si hay o no preguntas en el array y que devuelve
     for (var i=0;i<preguntas.length;++i){
       lista.append(this.construirElementoPregunta(preguntas[i]));
     }
