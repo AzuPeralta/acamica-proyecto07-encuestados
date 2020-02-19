@@ -42,9 +42,7 @@ VistaAdministrador.prototype = {
   reconstruirLista: function() {
     let lista = this.elementos.lista;
     lista.html('');
-    // var preguntas = this.modelo.getPreguntas();
-    let preguntas = this.modelo.preguntas;
-    //var preguntas = this.modelo.getPreguntas(); en esta funcion que esta dentro del modelo tiene que estar la condicional de si hay o no preguntas en el array y que devuelve
+    let preguntas = this.modelo.getPreguntas();
     for (let i=0;i<preguntas.length;++i){
       lista.append(this.construirElementoPregunta(preguntas[i]));
     }

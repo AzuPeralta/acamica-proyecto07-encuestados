@@ -2,8 +2,8 @@
  * Modelo
  */
 const Modelo = function() {
-  this.preguntas = JSON.parse(localStorage.getItem('preguntas')) || [];
-  // this.preguntas = [];
+  // this.preguntas = JSON.parse(localStorage.getItem('preguntas')) || [];
+  this.preguntas = [];
   this.ultimoId = 0;
 
   //inicializacion de eventos
@@ -15,6 +15,15 @@ const Modelo = function() {
 };
 
 Modelo.prototype = {
+  getPreguntas: function(){
+    if( localStorage != null){
+      this.preguntas = JSON.parse(localStorage.getItem('preguntas'))
+    }
+    else{
+      this.preguntas = [];
+    }
+    return this.preguntas;
+  },
   //se obtiene el id más grande asignado a una pregunta
   obtenerUltimoId: function () {
    let ultimoId = -1;
@@ -49,20 +58,8 @@ Modelo.prototype = {
  editarPregunta: function(){
 
 },
-  eliminarTodo: function(){
-    this.preguntas = [];
+  borrarTodo: function(){
+    this.preguntas = localStorage.setItem('preguntas', []);
     this.eliminarTodoEvent.notificar();
-    this.guardar();
   },
-  // getPreguntas: function(){
-  //   if(this.preguntas = []){
-  //     console.log('habia preguntas');
-  //     this.preguntas = JSON.parse(localStorage.getItem('preguntas'));
-  //   }
-  //   else{
-  //     console.log('estaba vacio');
-  //     // this.preguntas = [];
-  //   }
-  //   return this.preguntas;
-  // }
 }
