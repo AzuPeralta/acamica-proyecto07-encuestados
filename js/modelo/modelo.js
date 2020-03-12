@@ -11,13 +11,12 @@ const Modelo = function() {
   this.preguntaEliminadaEvent = new Evento(this);
   this.preguntaEditadaEvent = new Evento(this);
   this.eliminarTodoEvent = new Evento(this);
-  this.guardarEvent = new Evento(this);
 };
 
 Modelo.prototype = {
   getPreguntas: function(){
     if( localStorage != null){
-      this.preguntas = JSON.parse(localStorage.getItem('preguntas'))
+      this.preguntas = JSON.parse(localStorage.getItem('preguntas'));
     }
     else{
       this.preguntas = [];
@@ -55,11 +54,15 @@ Modelo.prototype = {
     this.guardar();
     this.preguntaEliminadaEvent.notificar();
 },
- editarPregunta: function(){
 
+  editarPregunta: function(id, nuevoTexto){
+    this.preguntas.splice(id, 1, nuevoTexto);
+    this.guardar();
+    this.preguntaEditadaEvent.notificar();
 },
   borrarTodo: function(){
     this.preguntas = localStorage.setItem('preguntas', []);
+    this.guardar();
     this.eliminarTodoEvent.notificar();
   },
 }

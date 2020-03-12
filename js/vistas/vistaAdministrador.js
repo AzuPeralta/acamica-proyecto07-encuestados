@@ -9,9 +9,10 @@ const VistaAdministrador = function(modelo, controlador, elementos) {
 
   // suscripción de observadores
   this.modelo.preguntaAgregadaEvent.suscribir(() => contexto.reconstruirLista());
+  this.modelo.preguntaEditadaEvent.suscribir(() => contexto.reconstruirLista());
   this.modelo.preguntaEliminadaEvent.suscribir(()=> contexto.reconstruirLista());
   this.modelo.eliminarTodoEvent.suscribir(() => contexto.reconstruirLista());
-};
+ };
 
 
 VistaAdministrador.prototype = {
@@ -75,6 +76,11 @@ VistaAdministrador.prototype = {
       contexto.controlador.borrarTodo();
     })
 
+    e.botonEditarPregunta.click(() => {
+      let id = parseInt($('.list-group-item.active').attr('id'));
+      let nuevoTexto = prompt("Edita tu pregunta");
+      contexto.controlador.editarPregunta(id, nuevoTexto);
+    })
     //asociar el resto de los botones a eventos
   },
 
