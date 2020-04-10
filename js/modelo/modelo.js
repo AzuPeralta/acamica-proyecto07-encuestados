@@ -15,12 +15,7 @@ const Modelo = function() {
 
 Modelo.prototype = {
   getPreguntas: function(){
-    if( localStorage != null){
-      this.preguntas = JSON.parse(localStorage.getItem('preguntas'));
-    }
-    else{
-      this.preguntas = [];
-    }
+    this.preguntas = JSON.parse(localStorage.getItem('preguntas')) || [];
     return this.preguntas;
   },
   //se obtiene el id más grande asignado a una pregunta
@@ -45,7 +40,7 @@ Modelo.prototype = {
 
   //se guardan las preguntas
   guardar: function(){
-    let preguntasParaGuardar = JSON.stringify(this.preguntas);
+    let preguntasParaGuardar = JSON.stringify(this.preguntas) || "[]";
     localStorage.setItem('preguntas', preguntasParaGuardar);
   },
 
@@ -56,7 +51,7 @@ Modelo.prototype = {
 },
 
   editarPregunta: function(id, nuevoTexto){
-    this.preguntas.splice(id, 1, nuevoTexto);
+    JSON.stringify(this.preguntas.splice(id, 1, nuevoTexto));
     this.guardar();
     this.preguntaEditadaEvent.notificar();
 },
