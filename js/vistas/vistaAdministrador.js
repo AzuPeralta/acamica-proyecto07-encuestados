@@ -64,7 +64,18 @@ VistaAdministrador.prototype = {
         respuestas.push({textoRespuesta: respuesta, cantidad: 0});
       })
       contexto.limpiarFormulario();
+
+      if(value){
       contexto.controlador.agregarPregunta(value, respuestas);
+    }
+      else {
+        swal({
+          title: "Cuidado!",
+          text: "No ingresaste ningún texto para crear la pregunta",
+          icon: "error",
+          button: "Probá otra vez!",
+        });
+      }
     });
 
     e.botonBorrarPregunta.click(() => {
@@ -79,7 +90,18 @@ VistaAdministrador.prototype = {
     e.botonEditarPregunta.click(() => {
       let id = parseInt($('.list-group-item.active').attr('id'));
       let nuevoTexto = prompt("Edita tu pregunta");
-      contexto.controlador.editarPregunta(id, nuevoTexto);
+
+      if(nuevoTexto){
+        contexto.controlador.editarPregunta(id, nuevoTexto);
+      }
+      else{
+        swal({
+          title: "Cuidado!",
+          text: "No ingresaste ningún texto para crear la pregunta",
+          icon: "warning",
+          button: "Probá otra vez!",
+        });
+      }
     })
     //asociar el resto de los botones a eventos
   },
