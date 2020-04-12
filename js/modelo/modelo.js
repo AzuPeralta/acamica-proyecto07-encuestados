@@ -51,10 +51,14 @@ Modelo.prototype = {
 },
 
   editarPregunta: function(id, nuevoTexto){
-    JSON.stringify(this.preguntas.splice(id, 1, nuevoTexto));
+    let preguntaOriginal = JSON.parse(localStorage.getItem('preguntas')).filter(p => p.id == id);
+    let nuevaPregunta = preguntaOriginal[0];
+    nuevaPregunta.textoPregunta = nuevoTexto;
+    this.preguntas.splice(id, 1, nuevaPregunta);
     this.guardar();
     this.preguntaEditadaEvent.notificar();
-},
+   },
+
   borrarTodo: function(){
     this.preguntas = localStorage.setItem('preguntas', []);
     this.guardar();
