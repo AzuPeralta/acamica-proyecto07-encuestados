@@ -72,7 +72,7 @@ VistaAdministrador.prototype = {
         swal({
           title: "Cuidado!",
           text: "No ingresaste ningún texto para crear la pregunta",
-          icon: "error",
+          icon: "warning",
           button: "Probá otra vez!",
         });
       }
@@ -97,7 +97,7 @@ VistaAdministrador.prototype = {
       else{
         swal({
           title: "Cuidado!",
-          text: "No ingresaste ningún texto para crear la pregunta",
+          text: "No ingresaste ningún texto para modificar la pregunta",
           icon: "warning",
           button: "Probá otra vez!",
         });

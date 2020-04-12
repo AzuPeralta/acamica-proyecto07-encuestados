@@ -64,4 +64,8 @@ Modelo.prototype = {
     this.guardar();
     this.eliminarTodoEvent.notificar();
   },
+
+  agregarVoto: function(nombrePregunta,respuestaSeleccionada){
+
+  },
 }
