@@ -12,6 +12,7 @@ var VistaUsuario = function(modelo, controlador, elementos) {
   this.modelo.preguntaEditadaEvent.suscribir(() => contexto.reconstruirLista());
   this.modelo.preguntaEliminadaEvent.suscribir(()=> contexto.reconstruirLista());
   this.modelo.eliminarTodoEvent.suscribir(() => contexto.reconstruirLista());
+  this.modelo.agregarVotoEvent.suscribir(() => contexto.dibujarGrafico());
  };
 
 VistaUsuario.prototype = {

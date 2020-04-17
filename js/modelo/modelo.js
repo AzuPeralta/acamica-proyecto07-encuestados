@@ -11,6 +11,7 @@ const Modelo = function() {
   this.preguntaEliminadaEvent = new Evento(this);
   this.preguntaEditadaEvent = new Evento(this);
   this.eliminarTodoEvent = new Evento(this);
+  this.agregarVotoEvent = new Evento(this);
 };
 
 Modelo.prototype = {
@@ -66,6 +67,7 @@ Modelo.prototype = {
   },
 
   agregarVoto: function(nombrePregunta,respuestaSeleccionada){
-
+    console.log(`El circuito funciona ${nombrePregunta}`);
+    this.agregarVotoEvent.notificar();
   },
 }
