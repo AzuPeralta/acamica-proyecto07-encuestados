@@ -46,7 +46,7 @@ VistaUsuario.prototype = {
 
   reconstruirLista: function() {
     var listaPreguntas = this.elementos.listaPreguntas;
-    listaPreguntas.html('');
+   // listaPreguntas.html('');
     var contexto = this;
     var preguntas = this.modelo.preguntas;
     preguntas.forEach(function(clave){
@@ -55,7 +55,7 @@ VistaUsuario.prototype = {
       //agregar a listaPreguntas un elemento div con valor "clave.textoPregunta", texto "clave.textoPregunta", id "clave.id"
       var respuestas = clave.cantidadPorRespuesta;
       contexto.mostrarRespuestas(listaPreguntas,respuestas, clave);
-    })
+    });
   },
 
   //muestra respuestas
