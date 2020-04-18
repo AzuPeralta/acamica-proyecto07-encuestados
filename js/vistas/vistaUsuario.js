@@ -12,7 +12,7 @@ var VistaUsuario = function(modelo, controlador, elementos) {
   this.modelo.preguntaEditadaEvent.suscribir(() => contexto.reconstruirLista());
   this.modelo.preguntaEliminadaEvent.suscribir(()=> contexto.reconstruirLista());
   this.modelo.eliminarTodoEvent.suscribir(() => contexto.reconstruirLista());
-  this.modelo.agregarVotoEvent.suscribir(() => contexto.dibujarGrafico());
+  this.modelo.agregarVotoEvent.suscribir(() => contexto.reconstruirGrafico());
  };
 
 VistaUsuario.prototype = {
@@ -47,7 +47,7 @@ VistaUsuario.prototype = {
 
   reconstruirLista: function() {
     var listaPreguntas = this.elementos.listaPreguntas;
-   // listaPreguntas.html('');
+    listaPreguntas.html('');
     var contexto = this;
     var preguntas = this.modelo.preguntas;
     preguntas.forEach(function(clave){

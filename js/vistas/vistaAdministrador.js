@@ -62,7 +62,8 @@ VistaAdministrador.prototype = {
         //completar
         let respuesta = $(this).val();
         respuestas.push({textoRespuesta: respuesta, cantidad: 0});
-      })
+      });
+      respuestas.pop();
       contexto.limpiarFormulario();
 
       if(value){

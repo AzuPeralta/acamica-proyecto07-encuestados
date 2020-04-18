@@ -67,7 +67,7 @@ Modelo.prototype = {
   },
 
   agregarVoto: function(nombrePregunta,respuestaSeleccionada){
-    console.log(`El circuito funciona ${nombrePregunta}`);
+    console.log("Hola Juli")
     this.agregarVotoEvent.notificar();
   },
 }
