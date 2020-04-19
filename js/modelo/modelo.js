@@ -67,7 +67,14 @@ Modelo.prototype = {
   },
 
   agregarVoto: function(nombrePregunta,respuestaSeleccionada){
-    console.log("Hola Juli")
+    console.log(nombrePregunta,respuestaSeleccionada);
+    let preguntaDellocalStorage = JSON.parse(localStorage.getItem('preguntas')).filter(p => p.textoPregunta == nombrePregunta);
+    let preguntaSeleccionada = preguntaDellocalStorage[0];
+    let respuestaElegida = preguntaSeleccionada.cantidadPorRespuesta.filter(r => r.textoRespuesta == respuestaSeleccionada)
+    let respuestaParaSumar = respuestaElegida[0];
+    respuestaParaSumar.cantidad++;
+
     this.agregarVotoEvent.notificar();
+
   },
 }
