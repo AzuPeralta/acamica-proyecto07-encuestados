@@ -67,14 +67,13 @@ Modelo.prototype = {
   },
 
   agregarVoto: function(nombrePregunta,respuestaSeleccionada){
-    console.log(nombrePregunta,respuestaSeleccionada);
-    let preguntaDellocalStorage = JSON.parse(localStorage.getItem('preguntas')).filter(p => p.textoPregunta == nombrePregunta);
-    let preguntaSeleccionada = preguntaDellocalStorage[0];
-    let respuestaElegida = preguntaSeleccionada.cantidadPorRespuesta.filter(r => r.textoRespuesta == respuestaSeleccionada)
-    let respuestaParaSumar = respuestaElegida[0];
-    respuestaParaSumar.cantidad++;
+    let preguntaDelLocalStorage = JSON.parse(localStorage.getItem('preguntas'));
+    let preguntaSeleccionada = preguntaDelLocalStorage.find(p => p.textoPregunta == nombrePregunta);
+    let respuestaElegida = preguntaSeleccionada.cantidadPorRespuesta
+    let respuestaParaSumar = respuestaElegida.find(r => r.textoRespuesta == respuestaSeleccionada);
+    respuestaParaSumar.cantidad+=1;
 
+    localStorage.setItem("preguntas", JSON.stringify(preguntaDelLocalStorage));
     this.agregarVotoEvent.notificar();
-
   },
 }

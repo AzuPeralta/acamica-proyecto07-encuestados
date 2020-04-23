@@ -1,4 +1,0 @@
-Funciona borrar, borrarTodo, y localStorage una sola vez. Si no se reinicia la pagina no se pueden volver a agregar preguntas. 
-
-Editar Pregunta: Como modificamos el textoPregunta
-pregunta.textoPregunta
